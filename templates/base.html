@@ -1,77 +1,88 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task3 Traveler</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
 </head>
 <body>
-    <header class="site-section site-header">
-        <div class="site-title-logo">
-            <a href="#">Logo</a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Features</a></li>
-                <li><a href="#">How it works</a></li>
-                <li><a href="#">Prices</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    <section class="site-section site-banner">
-        <div class="site-container">
-            <h1>See the world like a local</h1>
-            <p>Find a local guide consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-        </div>
-    </section>
+<div class="background-image">
+    <img src="{% static 'images/apolonia_common_view.jpg' %}" alt="Background Image">
+</div>
+<header class="site-section site-header">
+    <div class="site-title-logo">
+        <a href="#">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" width="100" height="100">
+        </a>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#">Photos</a></li>
+            <li><a href="#">Appartments</a></li>
+            <li><a href="#">Info</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<section class="site-section site-banner">
+    <div class="site-container">
+        <h1>If you love sea, beach and peace - this is your place</h1>
+        <p>Find your property to buy or rent with us.</p>
+    </div>
+</section>
+<section class="site-section main-contain">
+    <div class="site-container">
+        <p>Customer testimonial</p>
+        <h2>"We've used Traveler to lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua."</h2>
+    </div>
+</section>
 
+<section class="site-section support">
+    <div class="site-container">
+        <p>24/7 Support</p>
+        <p>Lorem ipsum dolor sit amet, <br>consectetur adipiscing elit.</p>
+    </div>
+</section>
 
-    <section class="site-section main-contain">
-        <div class="site-container">
-            <p>Customer testimonial</p>
-            <h2>"We've used Traveler to lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."</h2>
+<section class="site-section your-mind">
+    <div class="site-container your-mind-content">
+        <div class="media">
+            <img src="{% static 'images/apolonia_common_view.jpg' %}" alt="place1">
         </div>
-    </section>
-
-    <section class="site-section support">
-        <div class="site-container">
-            <p>24/7 Support</p>
-            <p>Lorem ipsum dolor sit amet, <br>consectetur adipiscing elit.</p>
+        <div class="text">
+            <h3>Understand your mind</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                mollit anim id est laborum.</p>
         </div>
-    </section>
-
-    <section class="site-section your-mind">
-        <div class="site-container your-mind-content">
-            <div class="media">
-                <img src="images/place1.jpg" alt="place1">
-            </div>
-            <div class="text">
-                <h3>Understand your mind</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-            <div class="button-first">
-                <a href="#">Read more ></a>
-            </div>
-            <div class="button-second">
-                <a href="#">Read all articles</a>
-            </div>  
+        <div class="button-first">
+            <a href="#">Read more ></a>
         </div>
-    </section>
-    <section class="site-section find-guide">
-        <div class="site-container guide">
-            <h3>Find a local guide now</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            <a href="#">Find a local guide</a>
+        <div class="button-second">
+            <a href="#">Read all articles</a>
         </div>
-    </section>
-    <footer class="site-section">
-        <div class="site-footer-logo">
-            <a href="#">Logo</a>
-        </div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
-        <p class="last-paragraph">&copy; 2024 Character. All Rights Reserved.</p>
-    </footer>
+    </div>
+</section>
+<section class="site-section find-guide">
+    <div class="site-container guide">
+        <h3>Find a local guide now</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. Ut enim ad minim veniam.</p>
+        <a href="#">Find a local guide</a>
+    </div>
+</section>
+<footer class="site-section">
+    <div class="site-footer-logo">
+        <a href="#">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" width="100" height="100">
+        </a>
+    </div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+    <p class="last-paragraph">&copy; 2024 Character. All Rights Reserved.</p>
+</footer>
 </body>
 </html>
