@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="3d761c00-73c2-4167-9cac-b3edbd68a82a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/90b81207-fd8e-4e3b-a2f6-ab70552e7533.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/90b81207-fd8e-4e3b-a2f6-ab70552e7533.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/90b81207-fd8e-4e3b-a2f6-ab70552e7533/storage_v2/_src_/database/apolonia_beach.p7lmBA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/90b81207-fd8e-4e3b-a2f6-ab70552e7533/storage_v2/_src_/database/apolonia_beach.p7lmBA/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apoloniaBeach/houses/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apoloniaBeach/houses/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apoloniaBeach/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/apoloniaBeach/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apoloniaBeach/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apoloniaBeach/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="CSS File" />
+        <option value="HTML File" />
         <option value="Python Script" />
       </list>
     </option>
@@ -111,7 +113,10 @@
       <workItem from="1730216073485" duration="2679000" />
       <workItem from="1730292211103" duration="13266000" />
       <workItem from="1730362655306" duration="741000" />
-      <workItem from="1730372229864" duration="19560000" />
+      <workItem from="1730372229864" duration="20758000" />
+      <workItem from="1730470589239" duration="3107000" />
+      <workItem from="1730548511963" duration="25000" />
+      <workItem from="1731396880476" duration="17021000" />
     </task>
     <servers />
   </component>

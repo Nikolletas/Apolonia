@@ -30,7 +30,8 @@ ALLOWED_HOSTS = []
 
 # Application definition
 MY_APPS = [
-    'apoloniaBeach.houses'
+    'apoloniaBeach.accounts',
+    'apoloniaBeach.houses',
 ]
 
 INSTALLED_APPS = [
@@ -135,3 +136,4 @@ CSRF_COOKIE_SECURE = True
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTH_USER_MODEL = 'accounts.UserRegistration'
