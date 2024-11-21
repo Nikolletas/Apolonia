@@ -8,9 +8,28 @@ UserModel = get_user_model()
 
 
 class UserRegistrationForm(UserCreationForm):
+
     class Meta(UserCreationForm.Meta):
         model = UserModel
-        fields = ('email', )
+        fields = ('email', 'first_name', 'last_name', 'nationality', 'phone_number',)
+
+        widgets = {
+            'email': forms.EmailInput(attrs={'placeholder': 'email@email.com'}),
+            'first_name': forms.TextInput(attrs={'placeholder': 'Name'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Surname'}),
+            'nationality': forms.TextInput(attrs={'placeholder': 'Nationality'}),
+            'phone_number': forms.TextInput(attrs={'placeholder': 'Phone Number'}),
+
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['password1'].help_text = ''
+        self.fields['password2'].help_text = ''
+
+        self.fields['password1'].widget.attrs.update({'placeholder': 'Password'})
+        self.fields['password2'].widget.attrs.update({'placeholder': 'The same password as before'})
 
 
 class UserRegistrationChangeForm(UserChangeForm):
@@ -18,10 +37,14 @@ class UserRegistrationChangeForm(UserChangeForm):
         model = UserModel
 
 
-class ProfileCreateForm(forms.ModelForm):
+class UserEditForm(forms.ModelForm):
+    class Meta:
+        model = UserModel
+        fields = ['first_name', 'last_name', 'nationality', 'phone_number']
+
+
+class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ['user']
-        error_messages = {
-            'required': 'This field is required!',
-        }
+        fields = ['profile_picture']
+

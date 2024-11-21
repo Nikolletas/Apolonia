@@ -1,7 +1,9 @@
+from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
-from .choices import HouseChoices
+from apoloniaBeach.choices import HouseChoices
+from ..validators import AlphaNumericValidator
 
 
 class House(models.Model):
@@ -26,7 +28,10 @@ class Apartment(models.Model):
         on_delete=models.CASCADE,
         related_name='apartments',
     )
-    number = models.IntegerField()
+    number = models.CharField(
+        max_length=2,
+        validators=[AlphaNumericValidator(),]
+    )
     apartment_area = models.DecimalField(
         max_digits=5,
         decimal_places=2,
@@ -41,9 +46,15 @@ class Apartment(models.Model):
     for_sale = models.BooleanField(
         default=False,
     )
-
-    def get_apartment_name(self):
-        return f"{self.house.name}{self.number}"
+    picture = models.ImageField(
+        upload_to='apartment_pictures',
+        null=True,
+        blank=True,
+    )
 
     def get_full_area(self):
         return f'{self.apartment_area + self.common_parts_of_the_building}:.2f'
+
+    def __str__(self):
+        return f"{self.house.name}{self.number}"
+

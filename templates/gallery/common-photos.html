@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<header class="site-header">
+
+    <section class="site-banner">
+
+    <nav>
+        <ul>
+            <li><a href="{% url 'common-photos' %}">Common Photos</a></li>
+            <li><a href="{% url 'sale-photos' %}">Photos for Sale</a></li>
+            <li><a href="{% url 'rental-photos' %}">Photos for Rent</a></li>
+            
+        </ul>
+    </nav>
+    </section>
+</header>
+<main>
+    <section class="gallery-intro">
+        <h1>Our photos from summer</h1>
+    
+        <div class="gallery-container">
+        {% if page_obj %}
+        {% for photo in page_obj %}
+            <div class="photo-item">
+                <img src="{{ photo.photo.url }}" alt="{{ photo.description }}">
+                <p>{{ photo.description }}</p>
+                <p>{{ photo.upload_date|date:"l, d/m/Y" }}</p>
+                {% if request.user == photo.published_by or request.user.is_superuser %}
+                    <a href="{% url 'edit-photo' photo.pk %}"><i class="fas fa-edit"></i></a>
+                    <a href="{% url 'delete-photo' photo.pk %}"><i class="fas fa-trash"></i></a>
+                {% endif %}
+            </div>
+        {% endfor %}
+        {% else %}
+            <p>No photos in this section yet.</p>
+        {% endif %}
+        </div>
+    
+        <div class="pagination-container">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}" class="arrow arrow-left">&laquo;</a>
+            {% else %}
+                <span class="arrow arrow-left disabled"></span>
+            {% endif %}
+        
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="arrow arrow-right">&raquo;</a>
+            {% else %}
+                <span class="arrow arrow-right disabled"></span>
+            {% endif %}
+        </div>`
+    </section>
+</main>
+{% endblock %}

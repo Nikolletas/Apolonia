@@ -1,17 +1,40 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
-from django.core.validators import MinValueValidator
 from django.db import models
 
 from apoloniaBeach.houses.models import Apartment
 from .managers import UserRegistrationManager
-from .validators import NameLetterValidator
+from apoloniaBeach.validators import NameLetterValidator, NumericValidator
 
 
-class UserRegistration(AbstractBaseUser, PermissionsMixin):
+class MyUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
-        unique=True
+        unique=True,
+        error_messages={
+            'required': "This field is required!",
+            'invalid': "Please enter a valid email address!"
+        }
+    )
+    first_name = models.CharField(
+        max_length=40,
+        validators=[NameLetterValidator(), ],
+    )
+    last_name = models.CharField(
+        max_length=40,
+        validators=[NameLetterValidator(), ]
+    )
+    nationality = models.CharField(
+        max_length=40,
+    )
+    phone_number = models.CharField(
+        max_length=20,
+        validators=[NumericValidator(), ]
+    )
+    apartment = models.ManyToManyField(
+        to=Apartment,
+        blank=True,
+        related_name='owner'
     )
     is_active = models.BooleanField(
         default=True
@@ -25,6 +48,9 @@ class UserRegistration(AbstractBaseUser, PermissionsMixin):
 
     objects = UserRegistrationManager()
 
+    def get_full_name(self):
+        return f'{self.first_name} {self.last_name}'
+
 
 UserModel = get_user_model()
 
@@ -33,25 +59,13 @@ class Profile(models.Model):
     user = models.OneToOneField(
         to=UserModel,
         on_delete=models.CASCADE,
+        primary_key=True,
     )
-    first_name = models.CharField(
-        max_length=40,
-        validators=[NameLetterValidator(),],
-    )
-    last_name = models.CharField(
-        max_length=40,
-        validators=[NameLetterValidator(),]
-    )
-    age = models.IntegerField(
-        validators=[MinValueValidator(18),],
+
+    profile_picture = models.ImageField(
+        upload_to='profile_pictures',
         blank=True,
         null=True,
     )
-    phone_number = models.CharField(
-        max_length=20,
-    )
-    apartment = models.ManyToManyField(
-        to=Apartment,
-        blank=False,
-        related_name='owner'
-    )
+
+

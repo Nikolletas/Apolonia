@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <main>
+    <section class="photo-gallery">
+        {% if form.price_per_night %}
+            <h1>Edit Photo</h1>
+            <div class="gallery-container">
+            <form class="form-container" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form }}
+                <button class="button">Save</button>
+            </form>
+        </div>
+        {% elif form.price %}
+            <h1>Edit Photo</h1>
+            <div class="gallery-container">
+            <form class="form-container" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form }}
+                <button class="button">Save</button>
+            </form>
+        </div>
+        {% else %}
+            <h1>Edit Photo</h1>
+            <div class="gallery-container">
+            <form class="form-container" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form }}
+                <button class="button">Save</button>
+            </form>
+        </div>
+        {% endif %}
+    </section>
+</main>
+
+{% endblock %}

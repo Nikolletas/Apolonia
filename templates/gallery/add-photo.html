@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<header class="site-header">
+
+    <section class="site-banner">
+ 
+    </section>
+</header>
+<main>
+    <section class="photo-gallery">
+        <h1>What type of photos you want to upload?</h1>
+        <div class="gallery-container">
+            
+            
+            <a href="{% url 'photo-common-add' %}">Common Photos</a>
+            <a href="{% url 'photo-sale-add' %}">Photos for Sale</a>
+            <a href="{% url 'photo-rental-add' %}">Photos for Rent</a>
+        </div>
+    </section>
+</main>
+{% endblock %}

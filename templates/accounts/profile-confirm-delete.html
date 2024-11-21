@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="delete-container">
+    <div class="delete-box">
+        <h1>Delete Profile</h1>
+        <p>Are you sure you want to delete your profile? This action is irreversible.</p>
+        <div class="warning-text">
+            <p>This will permanently remove your profile and all associated data.</p>
+        </div>
+        <form method="POST" action="{% url 'profile-delete' profile.pk %}">
+            {% csrf_token %}
+            <button type="submit" class="btn-delete">Delete</button>
+        </form>
+        <a href="{% url 'profile-details' pk=request.user.profile.pk %}">
+            <button class="cancel-button">Cancel</button>
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <main>
+    <section class="photo-gallery">
+        {% if form.price_per_night %}
+            <h1>Rental Photos</h1>
+            <div class="gallery-container">
+            <form class="form-container" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.photo.label }}
+                {{ form.photo }}
+                {{ form.description.label }}
+                {{ form.description }}
+                {{ form.apartment.label }}
+                {{ form.apartment }}
+                {{ form.price_per_night.label }}
+                {{ form.price_per_night }}
+                {{ form.currency.label }}
+                {{ form.currency }}
+                <button class="button">Save</button>
+            </form>
+        </div>
+        {% elif form.price %}
+            <h1>Sale Photos</h1>
+            <div class="gallery-container">
+            <form class="form-container" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.photo.label }}
+                {{ form.photo }}
+                {{ form.description.label }}
+                {{ form.description }}
+                {{ form.apartment.label }}
+                {{ form.apartment }}
+                {{ form.price.label }}
+                {{ form.price }}
+                {{ form.currency.label }}
+                {{ form.currency }}
+                <button class="button">Save</button>
+            </form>
+        </div>
+        {% else %}
+            <h1>Common Photos</h1>
+            <div class="gallery-container">
+            <form class="form-container" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.photo.label }}
+                {{ form.photo }}
+                {{ form.description.label }}
+                {{ form.description }}
+                <button class="button">Save</button>
+            </form>
+        </div>
+        {% endif %}
+    </section>
+</main>
+
+{% endblock %}

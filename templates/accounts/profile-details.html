@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="profile-details-container">
+    <h2>{{ user.get_full_name }}</h2>
+    
+    <div class="profile-card">
+        {% if profile.picture %}
+            <img src="{{ profile.picture.url }}" alt="Profile Picture" class="profile-picture">
+        {% else %}
+            <img src="{% static 'images/person.png' %}" alt="Default Profile Picture" class="profile-picture">
+        {% endif %}
+        
+        <div class="profile-info">
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            
+            <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
+
+            <p><strong>Nationality:</strong> {{ user.nationality }}</p>
+
+            <p><strong>Owned Apartments:</strong>
+                {% for apartment in user.apartment.all %}
+                    {{ apartment }} {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </p>
+            
+            
+        </div>
+    </div>
+
+    <div class="profile-actions">
+        {% if request.user.pk == profile.pk %}
+        <a href="{% url 'profile-edit' profile.pk %}" class="btn btn-primary">Edit Profile</a>
+        <a href="{% url 'profile-delete' profile.pk %}" class="btn btn-danger">Delete Profile</a>
+            <a href="#" class="btn btn-primary">Edit Apartment</a>
+            
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<header class="site-header">
+
+    <section class="site-banner">
+
+    <nav>
+        <ul>
+            <li><a href="{% url 'common-photos' %}">Common Photos</a></li>
+            <li><a href="{% url 'sale-photos' %}">Photos for Sale</a></li>
+            <li><a href="{% url 'rental-photos' %}">Photos for Rent</a></li>
+            
+        </ul>
+    </nav>
+    </section>
+</header>
+<main>
+    <section class="gallery-intro">
+        <h2>Apartment {{ apartment }}</h2>
+    
+        <div class="gallery-container">
+        
+        {% for photo in photos_for_apartment %}
+            <div class="photo-item">
+            {% if request.user == photo.published_by or request.user.is_superuser %}
+                <a href="{% url 'edit-photo' photo.pk %}"><i class="fas fa-edit"></i></a>
+                <a href="{% url 'delete-photo' photo.pk %}"><i class="fas fa-trash"></i></a>
+            {% endif %}
+                
+                <img src="{{ photo.photo.url }}" alt="{{ photo.description }}">
+            
+                <p>{{ photo.description }}</p>
+                {% if photo.apartment %}
+                    <p>Apartment {{ photo.apartment }}</p>
+                    {% if photo.apartment.for_rental %}
+                        <p>Price per night: {{ photo.get_price_for_rent }}</p>
+                    {% elif photo.apartment.for_sale %}
+                        <p>Price: {{ photo.get_price_for_sale }}</p>
+                        <p>{{ photo.apartment.get_full_area }} sq.m.</p>
+                    {% endif %}
+                {% endif %}
+                
+                <p>{{ photo.published_by.get_full_name }} Phone number: {{ photo.published_by.phone_number }}</p>
+
+                <p>{{ photo.upload_date|date:"l, d/m/Y" }}</p>
+                
+            </div>
+        {% endfor %}
+        </div>
+    
+        <div class="pagination-container">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}" class="arrow arrow-left">&laquo;</a>
+            {% else %}
+                <span class="arrow arrow-left disabled"></span>
+            {% endif %}
+        
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="arrow arrow-right">&raquo;</a>
+            {% else %}
+                <span class="arrow arrow-right disabled"></span>
+            {% endif %}
+        </div>`
+    </section>
+</main>
+{% endblock %}

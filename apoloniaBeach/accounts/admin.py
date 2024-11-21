@@ -3,13 +3,14 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
 from .forms import UserRegistrationChangeForm, UserRegistrationForm
+from .models import Profile
 
 UserModel = get_user_model()
 
 
 @admin.register(UserModel)
 class MyUserAdmin(UserAdmin):
-    list_display = ('email', )
+    list_display = ('email', 'first_name', 'last_name', )
     form = UserRegistrationChangeForm
     add_form = UserRegistrationForm
     ordering = ('pk',)
@@ -23,6 +24,7 @@ class MyUserAdmin(UserAdmin):
 
     fieldsets = (
         ('Credentials', {'fields': ('email', 'password')}),
-        ('Permissions', {'fields': ('is_active', 'is_staff', 'groups', 'is_superuser')}),
-        ('Important dates', {'fields': ('last_login', 'date_joined')}),
+        ('Personal info', {'fields': ('first_name', 'last_name', 'apartment')}),
+        ('Permissions', {'fields': ('is_active', 'is_staff', 'user_permissions', 'groups', 'is_superuser')}),
+        ('Important dates', {'fields': ('last_login', )}),
     )

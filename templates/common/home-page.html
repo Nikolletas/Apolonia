@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    
+    <section class="site-banner">
+        <div class="site-container">
+            <h1>If you love sea, beach and peace, this is your place</h1>
+
+        </div>
+    </section>
+    <section class="main-contain">
+        <div class="site-container">
+
+            <h2>Find your property to buy or rent with us.</h2>
+        </div>
+    </section>
+
+    <section class="your-mind">
+        <div class="site-container your-mind-content">
+            <div class="media">
+                <img src="{% static 'images/apolonia_common_view.jpg' %}" alt="place1">
+            </div>
+            <div class="text">
+                <h3>This is our site for pictures, announcements and good neighborliness</h3>
+                <p>If you want to spend your summer with us by renting an apartment, please read the <a style="text-decoration: none"
+                        href="{% url 'rules' %}">rules</a> and you can view photos here.</p>
+                <div>
+                    <a class="button-ask" href="#">Rent</a>
+                </div>
+                <p>If you want to become an owner and spend more time in this place, please read the <a style="text-decoration: none"
+                        href="{% url 'rules' %}">rules</a> and can view photos here.</p>
+                <div>
+                    <a class="button-ask" href="#">For Sell</a>
+                </div>
+                <p>If you are a new owner, please read the <a style="text-decoration: none;" href="{% url 'rules' %}">rules</a> and register here.</p>
+                {% if not request.user.is_authenticated %}
+                <div>
+                    <a class="button-ask" href="{% url 'register-user' %}">Register</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
