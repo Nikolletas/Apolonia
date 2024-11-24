@@ -9,6 +9,9 @@
 
             <nav>
                 <ul>
+                    {% if request.user.apartment.exists %}
+                        <li><a href="{% url 'add-photo' %}">Add Photos</a></li>
+                    {% endif %}
                     <li><a href="{% url 'common-photos' %}">Common Photos</a></li>
                     <li><a href="{% url 'sale-photos' %}">Photos for Sale</a></li>
                     <li><a href="{% url 'rental-photos' %}">Photos for Rent</a></li>
@@ -19,7 +22,7 @@
     </header>
     <main>
         <section class="gallery-intro">
-            <h1>Welcome to Apolonia Beach Gallery</h1>
+            <h1>Welcome to Apolonia Beach Gallery, {{ request.user.first_name }}!</h1>
 
             <div class="gallery-container">
                 {% if page_obj %}

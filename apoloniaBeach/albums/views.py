@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, TemplateView, ListView, DetailView, UpdateView, DeleteView
+from django.views.generic import CreateView, TemplateView, ListView, UpdateView, DeleteView
 
 from .forms import AddCommonPhotoForm, AddRentalPhotoForm, AddSalePhotoForm, EditRentalPhotoForm, EditSalePhotoForm, \
     EditCommonPhotoForm

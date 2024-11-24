@@ -20,6 +20,8 @@ class House(models.Model):
     common_corridors = models.BooleanField(
         default=True,
     )
+    def __str__(self):
+        return self.name
 
 
 class Apartment(models.Model):
@@ -29,7 +31,7 @@ class Apartment(models.Model):
         related_name='apartments',
     )
     number = models.CharField(
-        max_length=2,
+        max_length=3,
         validators=[AlphaNumericValidator(),]
     )
     apartment_area = models.DecimalField(
@@ -52,8 +54,11 @@ class Apartment(models.Model):
         blank=True,
     )
 
+    class Meta:
+        ordering = ['number']
+
     def get_full_area(self):
-        return f'{self.apartment_area + self.common_parts_of_the_building}:.2f'
+        return f'{(self.apartment_area + self.common_parts_of_the_building):.2f}'
 
     def __str__(self):
         return f"{self.house.name}{self.number}"

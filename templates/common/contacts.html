@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="profile-details-container">
+        {% for user in users %}
+            {% for group_name in user.groups.all %}
+                {% if group_name.name == 'Manager' %}
+                    <h3>Manager: {{ user.get_full_name }}</h3>
+                    <div class="profile-info">
+                        <p><strong>Email:</strong> {{ user.email }}</p>
+                        <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        {% for user in users %}
+            {% for group_name in user.groups.all %}
+                {% if group_name.name == 'Management board' %}
+                    <h3>{{ user.get_full_name }}</h3>
+                        <div class="profile-info">
+                            <p><strong>Email:</strong> {{ user.email }}</p>
+                            <p><strong>Phone Number:</strong> {{ user.phone_number }}</p>
+                        </div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+{% endblock %}

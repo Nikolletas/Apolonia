@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <main>
+    <section class="photo-gallery">
+            <h1>Add apartment</h1>
+            <div class="gallery-container">
+            <form class="form-container" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form }}
+                <button class="button">Save</button>
+            </form>
+        </div>
+    </section>
+</main>
+
+{% endblock %}

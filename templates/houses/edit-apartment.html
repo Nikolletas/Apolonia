@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="form-container">
+
+        <h3>Edit Apartment</h3>
+        <form class="form-container" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if request.user.is_superuser %}
+                {{ form }}
+
+            {% else %}
+                {{ form.for_rental.label }}
+                {{ form.for_rental }}
+                {{ form.for_sale.label }}
+                {{ form.for_sale }}
+                {{ form.picture.label }}
+                {{ form.picture }}
+            {% endif %}
+
+            <button type="submit">Save updates</button>
+        </form>
+    </div>
+{% endblock %}

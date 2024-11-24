@@ -29,22 +29,21 @@ img {
     z-index: -1;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, p {
     font-family: "Times New Roman";
+    color: #00008B;
 }
 
 h1 {
     font-size: 80px;
-    color: #00008B;
 }
 
 h2 {
     font-size: 60px;
-    color: #00008B;
 }
 
 h3 {
-    font-size: 50px;
+    font-size: 40px;
 }
 
 body {
@@ -126,6 +125,48 @@ main {
     max-width: 30ch;
     color: #00008B;
 
+}
+
+.list-houses {
+    display: flex;
+    padding: 15px;
+    border: 2px solid #e0f2f1;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.list-houses h3 {
+    font-size: 1.5rem;
+    color: #00008B;
+    margin-bottom: 10px;
+    margin-inline: 10px;
+}
+
+.list-houses ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    list-style: none;
+    margin: 0;
+}
+
+.list-houses ul li {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #e0f2f1;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.list-houses ul li a {
+    text-decoration: none;
+    color: #00008B;
+    font-weight: bold;
+}
+
+
+.list-houses ul li:hover {
+    background-color: #A3BEBF;
 }
 
 .site-banner p {

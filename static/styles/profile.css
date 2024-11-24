@@ -26,6 +26,16 @@
     margin-top: 0;
 }
 
+.profile-info a {
+    text-decoration: none;
+    color: #00008B;
+}
+
+.profile-info a:hover {
+    background-color: #00008B;
+    color: #e0f2f1;
+}
+
 .profile-actions {
     margin-top: 20px;
     display: flex;
@@ -51,8 +61,8 @@
 }
 
 .btn-primary:hover {
-    background-color: #e0f2f1;
-    color: #004d40;
+    background-color: #00008B;
+    color: #e0f2f1;
 }
 
 .btn-danger {

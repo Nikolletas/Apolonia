@@ -21,7 +21,7 @@
 
             <p><strong>Owned Apartments:</strong>
                 {% for apartment in user.apartment.all %}
-                    {{ apartment }} {% if not forloop.last %}, {% endif %}
+                    <a href="{% url 'details-apartment' apartment.pk %}">{{ apartment }}</a> {% if not forloop.last %}, {% endif %}
                 {% endfor %}
             </p>
             
@@ -33,7 +33,6 @@
         {% if request.user.pk == profile.pk %}
         <a href="{% url 'profile-edit' profile.pk %}" class="btn btn-primary">Edit Profile</a>
         <a href="{% url 'profile-delete' profile.pk %}" class="btn btn-danger">Delete Profile</a>
-            <a href="#" class="btn btn-primary">Edit Apartment</a>
             
         {% endif %}
     </div>

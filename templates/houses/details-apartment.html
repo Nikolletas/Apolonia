@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    
+    <div class="apartment-details">
+            {% if apartment.picture %}
+                <img src="{{ apartment.picture }}" alt="{{ apartment }}">
+            {% else %}
+                <img src="{% static 'images/apolonia_common_view.jpg' %}" alt="">
+            {% endif %}
+            <h3>House {{ apartment.house.name }} </h3>
+            <h3>Apartment {{ apartment }}</h3>
+            <h3 class="full-area">Square meters {{ apartment.get_full_area }}</h3>
+                <p>Area: {{ apartment.apartment_area }}</p>
+                <p class="last-p">Common parts {{ apartment.common_parts_of_the_building }}</p>
+            {% if apartment.for_sale %}
+                <h3>For Sale</h3>
+            {% elif apartment.for_rental %}
+                <h3>For Rental</h3>
+            {% endif %}
+                <h3>Owners {% for owner in apartment.owner.all %} 
+                    <a href="{% url 'profile-details' owner.pk %}">{{ owner.get_full_name }}</a> {% if not forloop.last %}, {% endif %}
+                {% endfor %}</h3>
+            {% if apartment in request.user.apartment.all or request.user.is_superuser %}
+                <a href="{% url 'edit-apartment' apartment.pk %}"><i class="fas fa-edit"></i></a>
+                {% if request.user.is_superuser %}
+                    <a href="{% url 'delete-apartment' apartment.pk %}"><i class="fas fa-trash"></i></a>
+                {% endif %}
+            {% endif %}
+    </div>
+            
+
+{% endblock %}

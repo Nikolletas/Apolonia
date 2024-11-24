@@ -24,7 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apoloniaBeach.common.urls')),
     path('accounts/', include('apoloniaBeach.accounts.urls')),
-    path('gallery/', include('apoloniaBeach.albums.urls'))
+    path('gallery/', include('apoloniaBeach.albums.urls')),
+    path('houses/', include('apoloniaBeach.houses.urls'))
 ]
 
 if settings.DEBUG:

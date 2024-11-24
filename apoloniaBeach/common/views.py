@@ -1,8 +1,10 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
 from django.core.paginator import Paginator
 from django.shortcuts import render
 from django.views.generic import ListView
 
+from apoloniaBeach.accounts.models import MyUser
 from apoloniaBeach.albums.models import Album
 
 UserModel = get_user_model()
@@ -29,3 +31,16 @@ def home_page(request):
 
 def rules(request):
     return render(request, 'common/rules.html')
+
+
+def contacts(request):
+    users = MyUser.objects.filter(is_staff=True)
+
+    context = {
+        'users': users,
+    }
+
+    return render(request, 'common/contacts.html', context)
+
+
+

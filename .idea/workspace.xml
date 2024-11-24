@@ -8,33 +8,23 @@
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/90b81207-fd8e-4e3b-a2f6-ab70552e7533.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/90b81207-fd8e-4e3b-a2f6-ab70552e7533.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/90b81207-fd8e-4e3b-a2f6-ab70552e7533/storage_v2/_src_/database/apolonia_beach.p7lmBA/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/90b81207-fd8e-4e3b-a2f6-ab70552e7533/storage_v2/_src_/database/apolonia_beach.p7lmBA/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apoloniaBeach/accounts/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/apoloniaBeach/accounts/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apoloniaBeach/accounts/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/apoloniaBeach/accounts/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apoloniaBeach/accounts/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/apoloniaBeach/accounts/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apoloniaBeach/accounts/managers.py" beforeDir="false" afterPath="$PROJECT_DIR$/apoloniaBeach/accounts/managers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apoloniaBeach/accounts/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/apoloniaBeach/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apoloniaBeach/accounts/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apoloniaBeach/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apoloniaBeach/accounts/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apoloniaBeach/accounts/validators.py" beforeDir="false" afterPath="$PROJECT_DIR$/apoloniaBeach/validators.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apoloniaBeach/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apoloniaBeach/accounts/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apoloniaBeach/houses/choices.py" beforeDir="false" afterPath="$PROJECT_DIR$/apoloniaBeach/choices.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apoloniaBeach/houses/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/apoloniaBeach/albums/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apoloniaBeach/albums/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apoloniaBeach/common/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apoloniaBeach/common/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apoloniaBeach/common/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apoloniaBeach/common/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/apoloniaBeach/houses/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/apoloniaBeach/houses/forms.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apoloniaBeach/houses/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apoloniaBeach/houses/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apoloniaBeach/houses/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apoloniaBeach/houses/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apoloniaBeach/houses/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/apoloniaBeach/houses/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apoloniaBeach/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/apoloniaBeach/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/apoloniaBeach/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/apoloniaBeach/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/logo_2-removebg-preview.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/logo_2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/photo0424.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/photo0425.JPG" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/photo0427.JPG" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/styles/forms.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/forms.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/styles/gallery.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/gallery.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/styles/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/styles/profile.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/profile.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/accounts/create-profile.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/accounts/register-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts/register-page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/accounts/profile-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/accounts/profile-details.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/common/home-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/common/home-page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/common/our-home-page.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/common/our-home-page.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,9 +37,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Python Script" />
         <option value="CSS File" />
         <option value="HTML File" />
-        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -65,30 +55,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Django Server.apoloniaBeach.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Python/PythonWeb/Django_basic/petstagram/static/css/home.css&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Django Server.apoloniaBeach.executor": "Debug",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "django.template.preview.state": "SHOW_EDITOR",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/Python/PythonWeb/Django_basic/petstagram/static/css/home.css",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Python\PythonWeb\MyProject\apoloniaBeach\apoloniaBeach" />
@@ -155,11 +145,22 @@
       <workItem from="1731915578481" duration="18046000" />
       <workItem from="1732004907610" duration="31090000" />
       <workItem from="1732087908624" duration="27240000" />
-      <workItem from="1732175717065" duration="9175000" />
+      <workItem from="1732175717065" duration="16711000" />
+      <workItem from="1732262993753" duration="2650000" />
+      <workItem from="1732354571891" duration="19035000" />
+      <workItem from="1732380827670" duration="9005000" />
+      <workItem from="1732436350873" duration="21844000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="Python.DjangoServer">
+        <watch expression="apartment" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

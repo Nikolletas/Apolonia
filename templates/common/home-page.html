@@ -26,12 +26,12 @@
                 <p>If you want to spend your summer with us by renting an apartment, please read the <a style="text-decoration: none"
                         href="{% url 'rules' %}">rules</a> and you can view photos here.</p>
                 <div>
-                    <a class="button-ask" href="#">Rent</a>
+                    <a class="button-ask" href="{% url 'rental-photos' %}">For Rent</a>
                 </div>
                 <p>If you want to become an owner and spend more time in this place, please read the <a style="text-decoration: none"
                         href="{% url 'rules' %}">rules</a> and can view photos here.</p>
                 <div>
-                    <a class="button-ask" href="#">For Sell</a>
+                    <a class="button-ask" href="{% url 'sale-photos' %}">For Sell</a>
                 </div>
                 <p>If you are a new owner, please read the <a style="text-decoration: none;" href="{% url 'rules' %}">rules</a> and register here.</p>
                 {% if not request.user.is_authenticated %}
