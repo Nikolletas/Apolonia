@@ -4,11 +4,9 @@
 {% block content %}
     
     <div class="apartment-details">
-            {% if apartment.picture %}
-                <img src="{{ apartment.picture }}" alt="{{ apartment }}">
-            {% else %}
-                <img src="{% static 'images/apolonia_common_view.jpg' %}" alt="">
-            {% endif %}
+
+            <img src="{% static 'images/apolonia_common_view.jpg' %}" alt="">
+
             <h3>House {{ apartment.house.name }} </h3>
             <h3>Apartment {{ apartment }}</h3>
             <h3 class="full-area">Square meters {{ apartment.get_full_area }}</h3>

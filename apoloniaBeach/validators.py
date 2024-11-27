@@ -76,10 +76,14 @@ def file_validator(file):
     allowed_document_extensions = ['pdf', 'doc', 'docx', 'txt']
     allowed_extensions = allowed_image_extensions + allowed_document_extensions
 
-    if file.size > max_size_mb * 1024 * 1024:
-        raise ValidationError(f"The file size should not exceed {max_size_mb} MB.")
+    if hasattr(file, 'size'):
+        if file.size > max_size_mb * 1024 * 1024:
+            raise ValidationError(f"The file size should not exceed {max_size_mb} MB.")
+        ext = os.path.splitext(file.name)[1][1:].lower()
+        if ext not in allowed_extensions:
+            raise ValidationError(f"Allowed file types are: {', '.join(allowed_extensions)}.")
+    else:
+        pass
 
-    ext = os.path.splitext(file.name)[1][1:].lower()
-    if ext not in allowed_extensions:
-        raise ValidationError(f"Allowed file types are: {', '.join(allowed_extensions)}.")
+
 

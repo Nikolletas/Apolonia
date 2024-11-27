@@ -1,3 +1,4 @@
+from cloudinary.models import CloudinaryField
 from django.contrib.auth import get_user_model
 from django.db import models
 
@@ -9,8 +10,8 @@ UserModel = get_user_model()
 
 
 class Album(models.Model):
-    photo = models.ImageField(
-        upload_to='apartment_pictures',
+    photo = CloudinaryField(
+        'photo',
         validators=[file_validator,]
     )
     photo_type = models.CharField(

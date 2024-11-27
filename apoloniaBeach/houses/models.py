@@ -48,11 +48,6 @@ class Apartment(models.Model):
     for_sale = models.BooleanField(
         default=False,
     )
-    picture = models.ImageField(
-        upload_to='apartment_pictures',
-        null=True,
-        blank=True,
-    )
 
     class Meta:
         ordering = ['number']

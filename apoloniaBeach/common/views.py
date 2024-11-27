@@ -1,6 +1,8 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.models import Group
 from django.core.paginator import Paginator
 from django.shortcuts import render
+from django.views.generic import ListView
 
 from apoloniaBeach.accounts.models import MyUser
 from apoloniaBeach.albums.models import Album
@@ -41,4 +43,20 @@ def contacts(request):
     return render(request, 'common/contacts.html', context)
 
 
+def documents(request):
+    return render(request, 'documents/documents.html')
 
+
+def home_book(request):
+    users = UserModel.objects.all().order_by('profile__owner_by')
+    users_per_page = 6
+    paginator = Paginator(users, users_per_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'users': users,
+        'page_obj': page_obj,
+    }
+
+    return render(request, 'documents/home-book.html', context)

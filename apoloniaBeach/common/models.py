@@ -1,3 +1,4 @@
+from cloudinary.models import CloudinaryField
 from django.contrib.auth import get_user_model
 from django.db import models
 
@@ -16,9 +17,9 @@ class AssociationDocument(models.Model):
         max_length=50,
         choices=DocumentChoices.choices,
     )
-    file = models.FileField(
-        upload_to='documents/',
-        validators=[file_validator]
+    file = CloudinaryField(
+        'file',
+        validators=[file_validator, ],
     )
     upload_date = models.DateTimeField(
         auto_now_add=True

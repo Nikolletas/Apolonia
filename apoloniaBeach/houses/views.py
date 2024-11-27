@@ -57,10 +57,7 @@ def edit_apartment_view(request, pk):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            if not request.user.is_superuser:
-                return redirect('profile-details', request.user.pk)
-            else:
-                return redirect('details-apartment', pk)
+            return redirect('details-apartment', pk)
 
     context = {
         'apartment': apartment,

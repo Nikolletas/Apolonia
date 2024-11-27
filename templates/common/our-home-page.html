@@ -29,7 +29,7 @@
                 {% if page_obj %}
                     {% for photo in page_obj %}
                         <div class="photo-item">
-                            {% cloudinary photo.photo alt="{{ photo.description }} %}
+                            {% cloudinary photo.photo alt="{{ photo.description }}" %}
                             <p>{{ photo.description }}</p>
                             <p>{{ photo.upload_date|date:"l, d/m/Y" }}</p>
                         </div>

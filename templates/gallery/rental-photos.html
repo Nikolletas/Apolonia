@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load cloudinary %}
 
 {% block content %}
 
@@ -26,7 +27,7 @@
         {% for photo in page_obj %}
             <div class="photo-item">
                 <a href="{% url 'detail-photos' photo.pk %}">Details</a>
-                <img src="{{ photo.photo.url }}" alt="{{ photo.description }}">
+                {% cloudinary photo.photo alt="{{ photo.description }}" %}
                 
                 <p>{{ photo.description }}</p>
                 {% if photo.apartment %}

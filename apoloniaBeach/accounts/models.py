@@ -1,3 +1,4 @@
+from cloudinary.models import CloudinaryField
 from django.contrib.auth import get_user_model
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
@@ -5,7 +6,7 @@ from django.db import models
 
 from apoloniaBeach.houses.models import Apartment
 from .managers import UserRegistrationManager
-from apoloniaBeach.validators import NameLetterValidator, NumericValidator
+from apoloniaBeach.validators import NameLetterValidator, NumericValidator, file_validator
 
 
 class MyUser(AbstractBaseUser, PermissionsMixin):
@@ -62,10 +63,14 @@ class Profile(models.Model):
         primary_key=True,
     )
 
-    profile_picture = models.ImageField(
-        upload_to='profile_pictures',
+    profile_picture = CloudinaryField(
+        'profile_picture',
+        validators=[file_validator, ],
         blank=True,
         null=True,
+    )
+    owner_by = models.DateField(
+        auto_now_add=True,
     )
 
 

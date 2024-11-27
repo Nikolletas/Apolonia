@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load cloudinary %}
 
 {% block content %}
 
@@ -30,7 +31,7 @@
                 <a href="{% url 'delete-photo' photo.pk %}"><i class="fas fa-trash"></i></a>
             {% endif %}
                 
-                <img src="{{ photo.photo.url }}" alt="{{ photo.description }}">
+                {% cloudinary photo.photo alt="{{ photo.description }}" %}
             
                 <p>{{ photo.description }}</p>
                 {% if photo.apartment %}

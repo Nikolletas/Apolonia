@@ -14,7 +14,6 @@ class ApartmentBaseForm(forms.ModelForm):
             'common_parts_of_the_building': 'Common parts',
             'for_rental': 'If apartment is for rental, please check:',
             'for_sale': 'If apartment is for sale, please check:',
-            'picture': 'Please, upload picture'
         }
 
 

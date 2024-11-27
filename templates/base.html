@@ -21,10 +21,13 @@
         {% if request.user.is_superuser or request.user.is_staff %}
             <li><a href="{% url 'apartments' %}">Apartments</a></li>
         {% endif %}
+    
         {% if request.user.is_authenticated %}
-        <li><a href="{% url 'profile-details' user.pk %}">Profile Details</a></li>
+            {% if request.user.apartment.exists %}
+                <li><a href="{% url 'documents' %}">Documents</a></li>
+            {% endif %}
+            <li><a href="{% url 'profile-details' user.pk %}">Profile Details</a></li>
         {% endif %}
-{#        <li><a href="{% url 'rules' %}">Rules</a></li>#}
         <li><a href="{% url 'contacts' %}">Contacts</a></li>
         {% if not request.user.is_authenticated %}
             <li><a href="{% url 'login' %}">Login</a></li>
@@ -36,7 +39,7 @@
                     <button type="submit" class="nav-link-button">Logout</button>
                 </form>
             </li>
-             <p>{{ request.user }}</p>
+             <p>{{ request.user }}
         {% endif %}
     </ul>
 </nav>
