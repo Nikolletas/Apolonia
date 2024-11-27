@@ -1,8 +1,6 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import Group
 from django.core.paginator import Paginator
 from django.shortcuts import render
-from django.views.generic import ListView
 
 from apoloniaBeach.accounts.models import MyUser
 from apoloniaBeach.albums.models import Album
