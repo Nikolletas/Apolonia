@@ -1,0 +1,148 @@
+.document-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+    max-height: 450px;
+}
+
+.document-item {
+    position: relative;
+    display: flex;
+    gap: 1em;
+}
+
+.hover-container {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.hover-container .image {
+    display: block;
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+    transition: opacity 0.5s ease;
+}
+
+.hover-container .middle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.hover-container .text {
+    color: #A3BEBF;
+    background-color: #00008B;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.hover-container:hover .image {
+    opacity: 0.3;
+}
+
+.hover-container:hover .middle {
+    opacity: 1;
+}
+
+.home-book {
+    display: flex;
+    padding: 15px;
+    border: 2px solid #e0f2f1;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.home-book h3 {
+    font-size: 1.5rem;
+    color: #00008B;
+    margin-bottom: 10px;
+    margin-inline: 10px;
+}
+
+.home-book ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    list-style: none;
+    margin: 0;
+}
+
+.home-book ul li {
+    display: inline-block;
+    padding: 10px;
+    border: 1px solid #e0f2f1;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    color: #00008B;
+}
+
+.home-book ul li a {
+    text-decoration: none;
+    color: #00008B;
+    font-weight: bold;
+}
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-links {
+    color: #00008B;
+}
+.step-links a {
+    color: #00008B;
+    text-decoration: none;
+}
+
+.arrow {
+    position: absolute;
+    font-size: 2rem;
+    color: #00008B;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    border-radius: 50%;
+    background-color: #A3BEBF;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.arrow-left {
+    top: 50%;
+    left: 10px;
+    transform: translateY(-500%) translateX(-1000%);
+
+}
+
+.arrow-right {
+    top: 50%;
+    right: 10px;
+    transform: translateY(-500%) translateX(1000%);
+}
+
+.arrow.disabled {
+    z-index: -2;
+    pointer-events: none;
+}
+
+.arrow:hover {
+    color: #fff;
+    background-color: #00008B;
+}
+
+

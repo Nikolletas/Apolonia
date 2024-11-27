@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="contacts-list">
+        {% for user in page_obj %}
+            <div class="home-book">
+                {% if not user.is_superuser and user.apartment.all %}
+                    <h3> {{ user.get_full_name }}: </h3>
+                    <ul>
+                        {% for apartment in user.apartment.all %}
+                            <li>Apartment {{ apartment }}, {{ apartment.get_full_area }} sq.m., Owned by {{ user.profile.owner_by }}</li>
+                        {% endfor %}
+                        <li>Phone number: {{ user.phone_number }}, Email: {{ user.email }}</li>
+                    </ul>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <main>
+        <section class="document-intro">
+        <h1>Welcome to the administration of our complex!</h1>
+
+        <div class="document-container">
+            <div class="document-item">
+                <a href="{% url 'home-book' %}" class="hover-container">
+                    <img src="{% static 'images/home_book.png' %}" alt="No photos available" class="image">
+                    <div class="middle">
+                        <span class="text">Home Book</span>
+                    </div>
+                </a>
+                
+                <a href="#" class="hover-container">
+                    <img src="{% static 'images/folder1.png' %}" alt="No photos available" class="image">
+                    <div class="middle">
+                        <span class="text">Association Documents</span>
+                    </div>
+                </a>
+                
+                <a href="#" class="hover-container">
+                    <img src="{% static 'images/announcement.png' %}" alt="No photos available" class="image">
+                    <div class="middle">
+                        <span class="text">Announcements</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    </main>
+{% endblock %}
