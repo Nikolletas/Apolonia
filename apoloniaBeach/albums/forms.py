@@ -19,11 +19,6 @@ class AddCommonPhotoForm(forms.ModelForm):
 
 
 class AddRentalPhotoForm(forms.ModelForm):
-    apartment = forms.ModelChoiceField(
-        queryset=Apartment.objects.all(),
-        required=True,
-    )
-
     class Meta:
         model = Album
         fields = ['photo', 'description', 'price_per_night', 'apartment', 'currency']
@@ -40,12 +35,14 @@ class AddRentalPhotoForm(forms.ModelForm):
             'currency': 'Please, choose an currency',
         }
 
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+        if user:
+            self.fields['apartment'].queryset = Apartment.objects.filter(owner=user)
+
 
 class AddSalePhotoForm(forms.ModelForm):
-    apartment = forms.ModelChoiceField(
-        queryset=Apartment.objects.all(),
-        required=True,
-    )
 
     class Meta:
         model = Album
@@ -62,6 +59,12 @@ class AddSalePhotoForm(forms.ModelForm):
             'apartment': 'Please, choose an apartment',
             'currency': 'Please, choose an currency',
         }
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+        if user:
+            self.fields['apartment'].queryset = Apartment.objects.filter(owner=user)
 
 
 class EditCommonPhotoForm(AddCommonPhotoForm):

@@ -30,6 +30,11 @@ class AddRentalPhotoView(CreateView):
     template_name = 'gallery/photo-add.html'
     success_url = reverse_lazy('home')
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
     def form_valid(self, form):
         form.instance.photo_type = PhotoTypesChoices.RENTAL
         form.instance.published_by = get_user_model().objects.get(pk=self.request.user.pk)
@@ -39,14 +44,17 @@ class AddRentalPhotoView(CreateView):
 
         return super().form_valid(form)
 
-    print(get_user_model().objects.all())
-
 
 class AddSalePhotoView(CreateView):
     model = Album
     form_class = AddSalePhotoForm
     template_name = 'gallery/photo-add.html'
     success_url = reverse_lazy('home')
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
     def form_valid(self, form):
         form.instance.photo_type = PhotoTypesChoices.SALE
@@ -118,6 +126,11 @@ class DetailPhotosView(ListView):
 class EditPhotoView(UpdateView):
     model = Album
     template_name = 'gallery/photo-edit.html'
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
     def get_form_class(self):
         photo = self.get_object()

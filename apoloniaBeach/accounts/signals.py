@@ -1,5 +1,6 @@
+from cloudinary.uploader import destroy
 from django.contrib.auth import get_user_model
-from django.db.models.signals import post_save, post_delete
+from django.db.models.signals import post_save, post_delete, pre_save
 from django.dispatch import receiver
 
 from apoloniaBeach.accounts.models import Profile
@@ -21,3 +22,12 @@ def deactivate_user_on_profile_delete(sender, instance, **kwargs):
         user.is_active = False
         user.is_staff = False
         user.save()
+
+
+@receiver(post_delete, sender=Profile)
+def delete_file_from_cloudinary(sender, instance, **kwargs):
+    if instance.file:
+        public_id = instance.file.public_id
+        destroy(public_id)
+
+

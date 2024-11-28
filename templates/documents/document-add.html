@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="contacts-list">
+            
+            <div class="home-book">
+                <form class="form-container" method="post" enctype="multipart/form-data">
+                    <h3>Add document</h3>
+                {% csrf_token %}
+                {{ form.title.label }}
+                {{ form.title }}
+                {{ form.document_type.label }}
+                {{ form.document_type }}
+                {{ form.file.label }}
+                {{ form.file }}
+                <button class="button">Save</button>
+            </form>
+            </div>
+        
+    </div>
+    
+{% endblock %}
