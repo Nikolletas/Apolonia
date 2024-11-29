@@ -29,7 +29,7 @@
                 </ul>
                 <p>Publish at {{ announce.date_posted|date:"d-m-Y" }}</p>
                 <p>From {{ announce.posted_by.get_full_name }}</p>
-                {% if request.user == announce.posted_by or request.user.is_superuser %}
+                {% if request.user == announce.posted_by or request.user.is_staff %}
                 <a href="{% url 'announcement-edit' announce.pk %}"><i class="fas fa-edit"></i></a>
                 <a href="{% url 'announcement-delete' announce.pk %}"><i class="fas fa-trash"></i></a>
             {% endif %}

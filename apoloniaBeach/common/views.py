@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
@@ -9,6 +10,7 @@ from apoloniaBeach.albums.models import Album
 from apoloniaBeach.common.forms import AssociationDocumentAddForm, AssociationDocumentEditForm, AnnouncementAddForm, \
     AnnouncementEditForm
 from apoloniaBeach.common.models import AssociationDocument, Announcement
+from apoloniaBeach.decorators import user_is_apartment_owner, user_is_manager
 
 UserModel = get_user_model()
 
@@ -46,10 +48,12 @@ def contacts(request):
     return render(request, 'common/contacts.html', context)
 
 
+@user_is_apartment_owner
 def documents(request):
     return render(request, 'documents/documents.html')
 
 
+@user_is_apartment_owner
 def home_book(request):
     users = UserModel.objects.all().order_by('profile__owner_by')
     users_per_page = 6
@@ -65,6 +69,7 @@ def home_book(request):
     return render(request, 'documents/home-book.html', context)
 
 
+@user_is_apartment_owner
 def association_documents(request):
     all_documents = AssociationDocument.objects.all().order_by('-upload_date', 'document_type')
     documents_per_page = 2
@@ -80,23 +85,26 @@ def association_documents(request):
     return render(request, 'documents/all-documents.html', context)
 
 
+@user_is_apartment_owner
 def association_document_add(request):
     form = AssociationDocumentAddForm(request.POST or None, request.FILES or None)
 
-    if request.method == 'POST':
-        if form.is_valid():
-            document = form.save(commit=False)
-            document.uploaded_by = request.user
-            document.save()
-            return redirect('all-documents')
+    if request.user.is_staff:
+        if request.method == 'POST':
+            if form.is_valid():
+                document = form.save(commit=False)
+                document.uploaded_by = request.user
+                document.save()
+                return redirect('all-documents')
 
-    context = {
-        'form': form,
-    }
+        context = {
+            'form': form,
+        }
 
-    return render(request, 'documents/document-add.html', context)
+        return render(request, 'documents/document-add.html', context)
 
 
+@user_is_manager
 def association_document_edit(request, pk):
     document = AssociationDocument.objects.get(pk=pk)
     form = AssociationDocumentEditForm(request.POST or None, request.FILES or None, instance=document)
@@ -115,6 +123,7 @@ def association_document_edit(request, pk):
     return render(request, 'documents/document-edit.html', context)
 
 
+@user_is_manager
 def association_document_delete(request, pk):
     document = AssociationDocument.objects.get(pk=pk)
     if request.method == 'POST':
@@ -128,6 +137,7 @@ def association_document_delete(request, pk):
     return render(request, 'documents/document-delete.html', context)
 
 
+@user_is_apartment_owner
 def announcements(request):
     all_announcements = Announcement.objects.all().order_by('-date_posted', 'category')
     announces_per_page = 2
@@ -142,6 +152,7 @@ def announcements(request):
     return render(request, 'documents/announcements.html', context)
 
 
+@user_is_apartment_owner
 def announcement_add(request):
     form = AnnouncementAddForm(request.POST or None)
 
@@ -159,15 +170,17 @@ def announcement_add(request):
     return render(request, 'documents/announcement-add.html', context)
 
 
+@user_is_apartment_owner
 def announcement_edit(request, pk):
     announcement = Announcement.objects.get(pk=pk)
     form = AnnouncementEditForm(request.POST or None, instance=announcement)
 
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
+    if request.user == announcement.posted_by or request.user.is_staff:
+        if request.method == 'POST':
+            if form.is_valid():
+                form.save()
 
-            return redirect('announcements')
+                return redirect('announcements')
 
     context = {
         'form': form,
@@ -177,11 +190,14 @@ def announcement_edit(request, pk):
     return render(request, 'documents/announcement-edit.html', context)
 
 
+@user_is_apartment_owner
 def announcement_delete(request, pk):
     announcement = Announcement.objects.get(pk=pk)
-    if request.method == 'POST':
-        announcement.delete()
-        return redirect('announcements')
+
+    if request.user == announcement.posted_by or request.user.is_staff:
+        if request.method == 'POST':
+            announcement.delete()
+            return redirect('announcements')
 
     context = {
         'announcement': announcement,

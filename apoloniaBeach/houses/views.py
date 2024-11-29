@@ -1,11 +1,16 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group
 from django.shortcuts import redirect, render
+
+from apoloniaBeach.decorators import user_is_apartment_owner
 from apoloniaBeach.houses.forms import EditApartmentForm, AddApartmentForm, EditApartmentOwnerForm
 from apoloniaBeach.houses.models import Apartment, House
 
 UserModel = get_user_model()
 
 
+@user_is_apartment_owner
 def apartments(request):
     houses = House.objects.all().order_by('name')
 
@@ -26,34 +31,40 @@ def apartments(request):
         return redirect('home')
 
 
+@login_required
 def add_apartment(request):
     form = AddApartmentForm(request.POST or None, request.FILES or None)
 
     if request.user.is_superuser:
-        if form.is_valid():
-            form.save()
-            return redirect('apartments')
+        if request.method == 'POST':
+            if form.is_valid():
+                form.save()
+                return redirect('apartments')
 
     context = {'form': form}
 
     return render(request, 'houses/add-apartment.html', context)
 
 
+@user_is_apartment_owner
 def details_apartment(request, pk):
     apartment = Apartment.objects.get(pk=pk)
-    context = {
-        'apartment': apartment
-    }
+    if apartment.owner == request.user or request.user.is_staff:
+        context = {
+            'apartment': apartment
+        }
 
-    return render(request, 'houses/details-apartment.html', context)
+        return render(request, 'houses/details-apartment.html', context)
 
 
-def edit_apartment_view(request, pk):
+@login_required
+def edit_apartment(request, pk):
     apartment = Apartment.objects.get(pk=pk)
-    form = EditApartmentForm(request.POST or None, request.FILES or None, instance=apartment)
-    if not request.user.is_superuser:
-        form = EditApartmentOwnerForm(request.POST or None, request.FILES or None, instance=apartment)
+    form = EditApartmentOwnerForm(request.POST or None, instance=apartment)
+    manager_group = Group.objects.get(name="Manager")
 
+    if manager_group in request.user.groups.all() or request.user.is_superuser:
+        form = EditApartmentForm(request.POST or None, instance=apartment)
     if request.method == 'POST':
         if form.is_valid():
             form.save()
@@ -66,7 +77,8 @@ def edit_apartment_view(request, pk):
     return render(request, 'houses/edit-apartment.html', context)
 
 
-def delete_apartment_view(request, pk):
+@login_required
+def delete_apartment(request, pk):
     apartment = Apartment.objects.get(pk=pk)
     if request.method == 'POST':
         if request.user.is_superuser:

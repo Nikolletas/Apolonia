@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView, ListView, UpdateView, DeleteView
 
@@ -6,13 +7,14 @@ from .forms import AddCommonPhotoForm, AddRentalPhotoForm, AddSalePhotoForm, Edi
     EditCommonPhotoForm
 from .models import Album
 from ..choices import PhotoTypesChoices
+from ..mixins import UserIsApartmentOwnerMixin
 
 
 class PhotoAddPageView(TemplateView):
     template_name = 'gallery/add-photo.html'
 
 
-class AddCommonPhotoView(CreateView):
+class AddCommonPhotoView(LoginRequiredMixin, UserIsApartmentOwnerMixin, CreateView):
     model = Album
     form_class = AddCommonPhotoForm
     template_name = 'gallery/photo-add.html'
@@ -24,7 +26,7 @@ class AddCommonPhotoView(CreateView):
         return super().form_valid(form)
 
 
-class AddRentalPhotoView(CreateView):
+class AddRentalPhotoView(LoginRequiredMixin, UserIsApartmentOwnerMixin, CreateView):
     model = Album
     form_class = AddRentalPhotoForm
     template_name = 'gallery/photo-add.html'
@@ -45,7 +47,7 @@ class AddRentalPhotoView(CreateView):
         return super().form_valid(form)
 
 
-class AddSalePhotoView(CreateView):
+class AddSalePhotoView(LoginRequiredMixin, UserIsApartmentOwnerMixin, CreateView):
     model = Album
     form_class = AddSalePhotoForm
     template_name = 'gallery/photo-add.html'
@@ -123,7 +125,7 @@ class DetailPhotosView(ListView):
         return context
 
 
-class EditPhotoView(UpdateView):
+class EditPhotoView(LoginRequiredMixin, UserIsApartmentOwnerMixin, UpdateView):
     model = Album
     template_name = 'gallery/photo-edit.html'
 
@@ -148,7 +150,7 @@ class EditPhotoView(UpdateView):
         return reverse_lazy('detail-photos', kwargs={'pk': self.object.pk})
 
 
-class DeletePhotoView(DeleteView):
+class DeletePhotoView(LoginRequiredMixin, UserIsApartmentOwnerMixin, DeleteView):
     model = Album
     template_name = 'gallery/photo-delete.html'
     context_object_name = 'photo'

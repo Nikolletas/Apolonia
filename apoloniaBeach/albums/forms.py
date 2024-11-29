@@ -17,6 +17,10 @@ class AddCommonPhotoForm(forms.ModelForm):
             'description': 'Photo Description',
         }
 
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+
 
 class AddRentalPhotoForm(forms.ModelForm):
     class Meta:
