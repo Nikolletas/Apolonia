@@ -10,7 +10,7 @@
 
             <nav>
                 <ul>
-                    {% if request.user.apartment.exists %}
+                    {% if request.user.apartment.exists or request.user.is_superuser %}
                         <li><a href="{% url 'add-photo' %}">Add Photos</a></li>
                     {% endif %}
                     <li><a href="{% url 'common-photos' %}">Common Photos</a></li>

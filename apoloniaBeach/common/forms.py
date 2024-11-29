@@ -1,6 +1,6 @@
 from django import forms
 
-from apoloniaBeach.common.models import AssociationDocument
+from apoloniaBeach.common.models import AssociationDocument, Announcement
 
 
 class AssociationDocumentBaseForm(forms.ModelForm):
@@ -23,4 +23,29 @@ class AssociationDocumentAddForm(AssociationDocumentBaseForm):
 
 
 class AssociationDocumentEditForm(AssociationDocumentBaseForm):
+    pass
+
+
+class AnnouncementBaseForm(forms.ModelForm):
+    class Meta:
+        model = Announcement
+        exclude = ['posted_by', 'date_posted']
+
+        widgets = {
+            'title': forms.TextInput(attrs={'placeholder': 'Some title'}),
+            'content': forms.Textarea(attrs={'placeholder': 'Some content'}),
+        }
+
+        labels = {
+            'title': 'Please, write title:',
+            'content': 'Please, write your announcement:',
+            'category': 'Please, choose a category',
+        }
+
+
+class AnnouncementAddForm(AnnouncementBaseForm):
+    pass
+
+
+class AnnouncementEditForm(AnnouncementBaseForm):
     pass

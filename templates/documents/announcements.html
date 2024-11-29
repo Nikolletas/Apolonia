@@ -9,7 +9,7 @@
             <nav>
                 <ul>
                     {% if request.user.apartment.exists or request.user.is_staff %}
-                        <li><a href="{% url 'document-add' %}">Add Document</a></li>
+                        <li><a href="{% url 'announcement-add' %}">Add Announcement</a></li>
                     {% endif %}
 
                 </ul>
@@ -17,22 +17,22 @@
         </section>
     </header>
     <section class="all_documents">
-        {% for document in page_obj %}
+        {% for announce in page_obj %}
             <div class="documents">
             <div class="document-details">
-            <h3>{{ document.document_type }}</h3>
+            <h3>{{ announce.category }}</h3>
                 <ul>
                     <li>
-                        <h4>{{ document }}</h4>
-                        <a href="{{ document.file.url }}" target="_blank" class="btn-documents">Open document</a>
+                        <h4>{{ announce }}</h4>
+                        <p>{{ announce.content }}</p>
                     </li>
                 </ul>
-                <p>Publish at {{ document.upload_date|date:"d-m-Y" }}</p>
-                <p>From {{ document.uploaded_by.get_full_name }}</p>
-{#                {% if request.user == document.uploaded_by or request.user.is_superuser %}#}
-                <a href="{% url 'document-edit' document.pk %}"><i class="fas fa-edit"></i></a>
-                <a href="{% url 'document-delete' document.pk %}"><i class="fas fa-trash"></i></a>
-{#            {% endif %}#}
+                <p>Publish at {{ announce.date_posted|date:"d-m-Y" }}</p>
+                <p>From {{ announce.posted_by.get_full_name }}</p>
+                {% if request.user == announce.posted_by or request.user.is_superuser %}
+                <a href="{% url 'announcement-edit' announce.pk %}"><i class="fas fa-edit"></i></a>
+                <a href="{% url 'announcement-delete' announce.pk %}"><i class="fas fa-trash"></i></a>
+            {% endif %}
             </div>
             </div>
         {% endfor %}

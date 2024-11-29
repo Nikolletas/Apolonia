@@ -6,8 +6,9 @@ from django.views.generic import ListView
 
 from apoloniaBeach.accounts.models import MyUser
 from apoloniaBeach.albums.models import Album
-from apoloniaBeach.common.forms import AssociationDocumentAddForm, AssociationDocumentEditForm
-from apoloniaBeach.common.models import AssociationDocument
+from apoloniaBeach.common.forms import AssociationDocumentAddForm, AssociationDocumentEditForm, AnnouncementAddForm, \
+    AnnouncementEditForm
+from apoloniaBeach.common.models import AssociationDocument, Announcement
 
 UserModel = get_user_model()
 
@@ -65,7 +66,7 @@ def home_book(request):
 
 
 def association_documents(request):
-    all_documents = AssociationDocument.objects.all().order_by('document_type', '-upload_date')
+    all_documents = AssociationDocument.objects.all().order_by('-upload_date', 'document_type')
     documents_per_page = 2
     paginator = Paginator(all_documents, documents_per_page)
     page_number = request.GET.get('page')
@@ -108,6 +109,7 @@ def association_document_edit(request, pk):
 
     context = {
         'form': form,
+        'document': document
     }
 
     return render(request, 'documents/document-edit.html', context)
@@ -124,3 +126,65 @@ def association_document_delete(request, pk):
     }
 
     return render(request, 'documents/document-delete.html', context)
+
+
+def announcements(request):
+    all_announcements = Announcement.objects.all().order_by('-date_posted', 'category')
+    announces_per_page = 2
+    paginator = Paginator(all_announcements, announces_per_page)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj,
+        'all_announcements': all_announcements,
+    }
+    return render(request, 'documents/announcements.html', context)
+
+
+def announcement_add(request):
+    form = AnnouncementAddForm(request.POST or None)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            announce = form.save(commit=False)
+            announce.posted_by = request.user
+            announce.save()
+            return redirect('announcements')
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'documents/announcement-add.html', context)
+
+
+def announcement_edit(request, pk):
+    announcement = Announcement.objects.get(pk=pk)
+    form = AnnouncementEditForm(request.POST or None, instance=announcement)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+
+            return redirect('announcements')
+
+    context = {
+        'form': form,
+        'announcement': announcement,
+    }
+
+    return render(request, 'documents/announcement-edit.html', context)
+
+
+def announcement_delete(request, pk):
+    announcement = Announcement.objects.get(pk=pk)
+    if request.method == 'POST':
+        announcement.delete()
+        return redirect('announcements')
+
+    context = {
+        'announcement': announcement,
+    }
+
+    return render(request, 'documents/announcement-delete.html', context)

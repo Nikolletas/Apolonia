@@ -31,3 +31,14 @@ def delete_file_from_cloudinary(sender, instance, **kwargs):
         destroy(public_id)
 
 
+@receiver(pre_save, sender=Profile)
+def delete_old_file_on_update(sender, instance, **kwargs):
+    if instance.pk:
+        try:
+            old_instance = Profile.objects.get(pk=instance.pk)
+            if old_instance.file and old_instance.file.public_id != instance.file.public_id:
+                destroy(old_instance.file.public_id)
+        except Profile.DoesNotExist:
+            pass
+
+

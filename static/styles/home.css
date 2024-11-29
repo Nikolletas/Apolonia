@@ -63,7 +63,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 5em;
+    max-height: 5em;
     background-color: #A3BEBF;
 }
 

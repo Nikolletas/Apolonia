@@ -23,7 +23,7 @@
         {% endif %}
     
         {% if request.user.is_authenticated %}
-            {% if request.user.apartment.exists %}
+            {% if request.user.apartment.exists or request.user.is_staff %}
                 <li><a href="{% url 'documents' %}">Documents</a></li>
             {% endif %}
             <li><a href="{% url 'profile-details' user.pk %}">Profile Details</a></li>
