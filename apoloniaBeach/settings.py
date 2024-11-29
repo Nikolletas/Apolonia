@@ -90,16 +90,14 @@ WSGI_APPLICATION = 'apoloniaBeach.wsgi.application'
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "apolonia_beach",
-        "USER": "postgres-user",
-        "PASSWORD": "password",
-        "HOST": "localhost",
-        "PORT": "5432",
+        "ENGINE": os.getenv("DATABASE_ENGINE", "django.db.backends.postgresql"),
+        "NAME": os.getenv("DATABASE_NAME"),
+        "USER": os.getenv("DATABASE_USER"),
+        "PASSWORD": os.getenv("DATABASE_PASSWORD"),
+        "HOST": os.getenv("DATABASE_HOST", "localhost"),
+        "PORT": os.getenv("DATABASE_PORT", "5432"),
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
