@@ -38,13 +38,18 @@ class AlphaNumericValidator:
     @message.setter
     def message(self, value):
         if value is None:
-            self.__message = "Name can only contain letters and numbers."
+            self.__message = "Number can start with number and finish with number or letter."
         else:
             self.__message = value
 
     def __call__(self, value: str, *args, **kwargs):
-        for char in value:
-            if not (char.isalpha() or char.isdigit()):
+        len_value = len(value)
+        if not value[0].isdigit():
+            raise ValidationError(self.message)
+        if not (value[len_value-1].isdigit() or value[len_value-1].isalpha()):
+            raise ValidationError(self.message)
+        for char in value[:len_value-1]:
+            if not char.isdigit():
                 raise ValidationError(self.message)
 
 
@@ -84,6 +89,9 @@ def file_validator(file):
             raise ValidationError(f"Allowed file types are: {', '.join(allowed_extensions)}.")
     else:
         pass
+
+
+
 
 
 

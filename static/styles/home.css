@@ -103,6 +103,10 @@ main {
 }
 
 .site-banner .site-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     color: #61695E;
 }
 
@@ -121,9 +125,8 @@ main {
 }
 
 .site-container h1 {
-    padding-bottom: 1.4em;
-    padding-left: 1.5em;
-    max-width: 30ch;
+    padding-block: 2.2em;
+    max-width: 28ch;
     color: #00008B;
 
 }

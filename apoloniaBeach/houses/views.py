@@ -33,13 +33,21 @@ def apartments(request):
 
 @login_required
 def add_apartment(request):
-    form = AddApartmentForm(request.POST or None, request.FILES or None)
+    form = AddApartmentForm(request.POST or None)
 
     if request.user.is_superuser:
         if request.method == 'POST':
             if form.is_valid():
                 form.save()
                 return redirect('apartments')
+
+    else:
+        return render(
+            request,
+            '403.html',
+            {"message": "You are not permissions to do this."},
+            status=403
+        )
 
     context = {'form': form}
 

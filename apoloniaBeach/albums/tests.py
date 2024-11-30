@@ -68,3 +68,56 @@ class AddCommonPhotoViewTest(TestCase):
         self.user.apartment.clear()
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 403)
+
+
+class AddRentalPhotoViewTest(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            email='testuser@example.com',
+            password='testpassword',
+            first_name='Test',
+            last_name='User',
+            nationality='Some nationality',
+            phone_number='00000000',
+        )
+        self.house = House.objects.create(
+            name='A',
+            floors=1,
+        )
+        self.apartment = Apartment.objects.create(
+            house=self.house,
+            number=1,
+            apartment_area=20,
+            common_parts_of_the_building=1,
+        )
+        self.user.apartment.add(self.apartment)
+
+        self.url = reverse('photo-rental-add')
+
+    def test_add_rental_photo_authenticated_user(self):
+        self.client = Client()
+        self.client.login(email='testuser@example.com', password='testpassword')
+        uploaded_file = SimpleUploadedFile(
+            name='sample_photo.jpg',
+            content=b'\x47\x49\x46\x38\x39\x61\x01\x00\x01\x00\x80\xff\x00\xff\xff\xff\x00\x00\x00\x21\xf9\x04\x01\x0a\x00\x01\x00\x2c\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x02\x4c\x01\x00\x3b',
+            content_type='image/jpeg'
+        )
+
+        response = self.client.post(self.url, {
+            'photo': uploaded_file,
+            'description': 'Sample description',
+            'price_per_night': 100,
+            'apartment': self.apartment.pk,
+            'currency': 'BGN'
+        })
+
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(Album.objects.count(), 1)
+
+        album = Album.objects.first()
+        self.apartment.for_rental = True
+        self.assertEqual(album.photo_type, PhotoTypesChoices.RENTAL)
+        self.assertEqual(album.published_by, self.user)
+        self.assertEqual(album.description, 'Sample description')
+        self.assertEqual(album.apartment.for_rental, self.apartment.for_rental)
+
