@@ -116,6 +116,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.abv.bg'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_HOST_USER = 'apollonia_beach@abv.bg'
+EMAIL_HOST_PASSWORD = 'kurickiy2019'
+DEFAULT_FROM_EMAIL = 'apollonia_beach@abv.bg'
+
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/

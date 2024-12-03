@@ -1,9 +1,6 @@
 from django.contrib.auth import get_user_model
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import Group
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
-from django.views.generic import ListView
 
 from apoloniaBeach.accounts.models import MyUser
 from apoloniaBeach.albums.models import Album
@@ -11,6 +8,8 @@ from apoloniaBeach.common.forms import AssociationDocumentAddForm, AssociationDo
     AnnouncementEditForm
 from apoloniaBeach.common.models import AssociationDocument, Announcement
 from apoloniaBeach.decorators import user_is_apartment_owner, user_is_manager
+
+from apoloniaBeach.common.tasks import send_email_notification
 
 UserModel = get_user_model()
 
@@ -95,13 +94,19 @@ def association_document_add(request):
                 document = form.save(commit=False)
                 document.uploaded_by = request.user
                 document.save()
+
+                subject = f"New Document Added: {document.title}"
+                message = f"A new document has been added by {request.user.get_full_name()}."
+                recipient_list = ['nikoletas@abv.bg', ]
+
+                send_email_notification.delay(subject, message, recipient_list)
+
                 return redirect('all-documents')
 
-        context = {
-            'form': form,
-        }
-
-        return render(request, 'documents/document-add.html', context)
+    context = {
+        'form': form,
+    }
+    return render(request, 'documents/document-add.html', context)
 
 
 @user_is_manager
