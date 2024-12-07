@@ -1,0 +1,94 @@
+
+.apartment-details {
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 2px solid #e0f2f1;
+    border-radius: 10px;
+    background-color: #A3BEBF;
+    color: #00008B;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+.apartment-details img {
+    width: 100%;
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #e0f2f1;
+}
+
+
+.apartment-details h3 {
+    font-size: 1.5rem;
+    color: #00008B;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #e0f2f1;
+    padding-bottom: 5px;
+}
+
+.apartment-details h3 a {
+    text-decoration: none;
+    color: #00008B;
+}
+
+.apartment-details h3 a:hover {
+    background-color: #00008B;
+    color: #e0f2f1;;
+}
+
+.apartment-details .full-area {
+    border: none;
+}
+
+.apartment-details p {
+    font-size: 1rem;
+    color: #00008B;
+    line-height: 1.5;
+    margin: 5px 0;
+}
+
+.apartment-details .last-p {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #e0f2f1;
+    padding-bottom: 5px;
+}
+
+.fa-edit {
+    color: #00008B;
+}
+
+.fa-trash {
+    color: #00008B;
+}
+
+.fa-edit:hover {
+    background-color: #00008B;
+    color: #e0f2f1;
+}
+
+.fa-trash:hover {
+    background-color: #00008B;
+    color: #e0f2f1;
+}
+
+@media (max-width: 768px) {
+    .apartment-details {
+        padding: 15px;
+    }
+
+    .apartment-details img {
+        max-height: 200px;
+    }
+
+    .apartment-details h3 {
+        font-size: 1.3rem;
+    }
+
+    .apartment-details p {
+        font-size: 0.9rem;
+    }
+}
