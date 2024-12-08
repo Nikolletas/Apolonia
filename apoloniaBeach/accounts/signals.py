@@ -26,8 +26,8 @@ def deactivate_user_on_profile_delete(sender, instance, **kwargs):
 
 @receiver(post_delete, sender=Profile)
 def delete_file_from_cloudinary(sender, instance, **kwargs):
-    if instance.file:
-        public_id = instance.file.public_id
+    if instance.profile_picture:
+        public_id = instance.profile_picture.public_id
         destroy(public_id)
 
 
@@ -36,7 +36,7 @@ def delete_old_file_on_update(sender, instance, **kwargs):
     if instance.pk:
         try:
             old_instance = Profile.objects.get(pk=instance.pk)
-            if old_instance.file and old_instance.file.public_id != instance.file.public_id:
+            if old_instance.profile_picture and old_instance.profile_picture.public_id != instance.profile_picture.public_id:
                 destroy(old_instance.file.public_id)
         except Profile.DoesNotExist:
             pass

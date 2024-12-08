@@ -40,6 +40,7 @@ class ProfileEditView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['user_form'] = UserEditForm(instance=self.request.user)
+        print(context)
         return context
 
     def form_valid(self, form):
