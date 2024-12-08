@@ -19,6 +19,9 @@
     </div>
     <nav>
     <ul>
+        {% if request.user.is_superuser %}
+            <li><a href="{% url 'houses' %}">Houses</a></li>
+        {% endif %}
         {% if request.user.is_superuser or request.user.is_staff %}
             <li><a href="{% url 'apartments' %}">Apartments</a></li>
         {% endif %}

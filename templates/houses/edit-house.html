@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="form-container">
+        {% if request.user.is_superuser %}
+
+        <h3>Edit House</h3>
+        <form class="form-container" method="post">
+            {% csrf_token %}
+            {% if request.user.is_superuser %}
+                {{ form }}
+            {% endif %}
+
+            <button type="submit">Save updates</button>
+        </form>
+    {% endif %}
+    </div>
+{% endblock %}

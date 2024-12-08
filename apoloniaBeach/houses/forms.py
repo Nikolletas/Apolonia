@@ -1,6 +1,20 @@
 from django import forms
 
-from apoloniaBeach.houses.models import Apartment
+from apoloniaBeach.houses.models import Apartment, House
+
+
+class HouseBaseForm(forms.ModelForm):
+    class Meta:
+        model = House
+        fields = '__all__'
+
+
+class AddHouseForm(HouseBaseForm):
+    pass
+
+
+class EditHouseForm(HouseBaseForm):
+    pass
 
 
 class ApartmentBaseForm(forms.ModelForm):

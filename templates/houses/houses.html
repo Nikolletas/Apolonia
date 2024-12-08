@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if request.user.is_superuser %}
+    <header class="site-header">
+    <nav>
+    <ul>
+            <li><a href="{% url 'add-house' %}">Add house</a></li>
+    </ul>
+    </nav>
+    </header>
+    {% for house in houses %}
+        <div class="list-houses">
+            <h3><a href="{% url 'edit-house' house.pk %}">>House {{ house.name }} </a></h3>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}
