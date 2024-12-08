@@ -8,7 +8,7 @@ from apoloniaBeach.albums.models import Album
 @receiver(post_delete, sender=Album)
 def delete_file_from_cloudinary(sender, instance, **kwargs):
     if instance.file:
-        public_id = instance.file.public_id
+        public_id = instance.photo.public_id
         destroy(public_id)
 
 
@@ -17,7 +17,7 @@ def delete_old_file_on_update(sender, instance, **kwargs):
     if instance.pk:
         try:
             old_instance = Album.objects.get(pk=instance.pk)
-            if old_instance.file and old_instance.file.public_id != instance.file.public_id:
-                destroy(old_instance.file.public_id)
+            if old_instance.photo and old_instance.photo.public_id != instance.photo.public_id:
+                destroy(old_instance.photo.public_id)
         except Album.DoesNotExist:
             pass
