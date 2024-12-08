@@ -1,7 +1,9 @@
 from django.contrib.auth import get_user_model
+from django.core.mail import send_mail
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 
+from apoloniaBeach import settings
 from apoloniaBeach.accounts.models import MyUser
 from apoloniaBeach.albums.models import Album
 from apoloniaBeach.common.forms import AssociationDocumentAddForm, AssociationDocumentEditForm, AnnouncementAddForm, \
@@ -99,7 +101,14 @@ def association_document_add(request):
                 message = f"A new document has been added by {request.user.get_full_name()}."
                 recipient_list = ['nikoletas@abv.bg', ]
 
-                send_email_notification.delay(subject, message, recipient_list)
+                # send_email_notification.delay(subject, message, recipient_list)
+                send_mail(
+                    subject,
+                    message,
+                    settings.EMAIL_HOST_USER,
+                    recipient_list,
+                    fail_silently=False,
+                )
 
                 return redirect('all-documents')
 

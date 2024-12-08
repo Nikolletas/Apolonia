@@ -129,9 +129,10 @@ EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True') == 'True'
 EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', 'False') == 'True'
 
 CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL")
+# CELERY_BROKER_URL = f"{os.getenv('REDIS_URL')}?ssl_cert_reqs=CERT_NONE"
+# CELERY_RESULT_BACKEND = f"{os.getenv('REDIS_URL')}?ssl_cert_reqs=CERT_NONE"
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
