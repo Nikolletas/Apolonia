@@ -11,7 +11,7 @@ from apoloniaBeach.common.forms import AssociationDocumentAddForm, AssociationDo
 from apoloniaBeach.common.models import AssociationDocument, Announcement
 from apoloniaBeach.decorators import user_is_apartment_owner, user_is_manager
 
-from apoloniaBeach.common.tasks import send_email_notification
+# from apoloniaBeach.common.tasks import send_email_notification
 
 UserModel = get_user_model()
 
@@ -105,7 +105,7 @@ def association_document_add(request):
                 send_mail(
                     subject,
                     message,
-                    settings.EMAIL_HOST_USER,
+                    settings.DEFAULT_FROM_EMAIL,
                     recipient_list,
                     fail_silently=False,
                 )
