@@ -89,6 +89,7 @@ def association_documents(request):
 @user_is_apartment_owner
 def association_document_add(request):
     form = AssociationDocumentAddForm(request.POST or None, request.FILES or None)
+    owners = UserModel.objects.filter(apartment__isnull=False).distinct()
 
     if request.user.is_staff:
         if request.method == 'POST':
@@ -99,7 +100,7 @@ def association_document_add(request):
 
                 subject = f"New Document Added: {document.title}"
                 message = f"A new document has been added by {request.user.get_full_name()}."
-                recipient_list = ['nikoletas@abv.bg', ]
+                recipient_list = [owner.email for owner in owners]
 
                 # send_email_notification.delay(subject, message, recipient_list)
                 send_mail(
