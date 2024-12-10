@@ -10,6 +10,7 @@
                 <ul>
                     {% if request.user.apartment.exists or request.user.is_staff %}
                         <li><a href="{% url 'document-add' %}">Add Document</a></li>
+                        <li><a href="{% url 'rules' %}">Rules</a></li>
                     {% endif %}
 
                 </ul>

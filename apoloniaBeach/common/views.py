@@ -112,6 +112,8 @@ def association_document_add(request):
                 )
 
                 return redirect('all-documents')
+    else:
+        return render(request, '403.html')
 
     context = {
         'form': form,
