@@ -33,6 +33,7 @@
     <div class="profile-actions">
         {% if request.user.pk == profile.pk %}
         <a href="{% url 'profile-edit' profile.pk %}" class="btn btn-primary">Edit Profile</a>
+            <a href="{% url 'change-password' %}" class="btn btn-primary">Change Passowrd</a>
         <a href="{% url 'profile-delete' profile.pk %}" class="btn btn-danger">Delete Profile</a>
             
         {% endif %}

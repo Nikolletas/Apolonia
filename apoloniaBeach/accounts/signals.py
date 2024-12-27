@@ -1,8 +1,10 @@
 from cloudinary.uploader import destroy
 from django.contrib.auth import get_user_model
+from django.core.mail import send_mail
 from django.db.models.signals import post_save, post_delete, pre_save
 from django.dispatch import receiver
 
+from apoloniaBeach import settings
 from apoloniaBeach.accounts.models import Profile
 
 UserModel = get_user_model()
@@ -12,6 +14,19 @@ UserModel = get_user_model()
 def create_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
+
+        subject = f"New User Added: {instance.email}"
+        message = f"A new User has been added - {instance.first_name} {instance.last_name}."
+        recipient_list = ['nikoletas@abv.bg']
+
+        # send_email_notification.delay(subject, message, recipient_list)
+        send_mail(
+            subject,
+            message,
+            settings.DEFAULT_FROM_EMAIL,
+            recipient_list,
+            fail_silently=False,
+        )
 
 
 @receiver(post_delete, sender=Profile)

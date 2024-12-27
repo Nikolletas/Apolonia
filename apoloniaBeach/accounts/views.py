@@ -1,5 +1,7 @@
-from django.contrib.auth import get_user_model, login
+from django.contrib import messages
+from django.contrib.auth import get_user_model, login, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseForbidden, Http404
@@ -77,4 +79,23 @@ def profile_details(request, pk):
         'profile': profile,
     }
     return render(request, 'accounts/profile-details.html', context)
+
+
+@login_required
+def change_password(request):
+    form = PasswordChangeForm(request.user)
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('profile-details', pk=request.user.pk)
+        else:
+            messages.error(request, 'Please correct the error below.')
+
+    context = {
+        'form': form
+    }
+    return render(request, 'accounts/change-password.html', context)
 

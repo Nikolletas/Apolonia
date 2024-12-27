@@ -8,6 +8,7 @@ urlpatterns = [
     path('register/', views.MyUserCreationView.as_view(), name='register-user'),
     path('login/', views.UserLoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    path('change_password/', views.change_password, name='change-password'),
     path('<int:pk>/', include([
         path('details/', views.profile_details, name='profile-details'),
         path('profile-edit/', views.ProfileEditView.as_view(), name='profile-edit'),

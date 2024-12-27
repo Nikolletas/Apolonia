@@ -303,3 +303,52 @@ footer .last-paragraph {
     color: #fff;
     background-color: #00008B;
 }
+
+@media (max-width: 768px) {
+    html {
+    font: 10px/1.5 "Times New Roman";
+    }
+
+    h1 {
+        font-size: 60px;
+    }
+
+    h2 {
+        font-size: 40px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+    p {
+        font-size: 10px;
+    }
+
+    .site-header nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1em;
+    }
+
+    .list-houses {
+        flex-direction: column;
+    }
+
+    .list-houses ul {
+        justify-content: center;
+    }
+
+    .main-contain p {
+        padding-left: 2em;
+    }
+
+    .your-mind-content {
+        padding: 1em;
+    }
+
+    .pagination-container .arrow {
+        font-size: 1.5rem;
+        width: 1em;
+        height: 1em;
+    }
+}
