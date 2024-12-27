@@ -7,7 +7,7 @@ from apoloniaBeach.albums.models import Album
 
 @receiver(post_delete, sender=Album)
 def delete_file_from_cloudinary(sender, instance, **kwargs):
-    if instance.file:
+    if instance.photo:
         public_id = instance.photo.public_id
         destroy(public_id)
 
