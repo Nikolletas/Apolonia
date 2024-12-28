@@ -43,7 +43,10 @@ class AddRentalPhotoForm(forms.ModelForm):
         user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
         if user:
-            self.fields['apartment'].queryset = Apartment.objects.filter(owner=user)
+            if user.is_superuser:
+                self.fields['apartment'].queryset = Apartment.objects.all()
+            else:
+                self.fields['apartment'].queryset = Apartment.objects.filter(owner=user)
 
 
 class AddSalePhotoForm(forms.ModelForm):
@@ -68,7 +71,10 @@ class AddSalePhotoForm(forms.ModelForm):
         user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
         if user:
-            self.fields['apartment'].queryset = Apartment.objects.filter(owner=user)
+            if user.is_superuser:
+                self.fields['apartment'].queryset = Apartment.objects.all()
+            else:
+                self.fields['apartment'].queryset = Apartment.objects.filter(owner=user)
 
 
 class EditCommonPhotoForm(AddCommonPhotoForm):
