@@ -2,9 +2,6 @@ from django.contrib import admin
 
 from apoloniaBeach.albums.models import Album
 
-
-# Register your models here.
-
 @admin.register(Album)
 class AlbumAdmin(admin.ModelAdmin):
     list_display = ('photo', 'photo_type', 'description', 'published_by', 'upload_date', 'apartment', 'price', 'price_per_night', 'currency')
