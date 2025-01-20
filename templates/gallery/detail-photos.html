@@ -36,10 +36,13 @@
                 <p>{{ photo.description }}</p>
                 {% if photo.apartment %}
                     <p>Apartment {{ photo.apartment }}</p>
-                    {% if photo.apartment.for_rental %}
+                    {% if photo.price_per_night and photo.price %}
                         <p>Price per night: {{ photo.get_price_for_rent }}</p>
-                    {% elif photo.apartment.for_sale %}
-                        <p>Price: {{ photo.get_price_for_sale }}</p>
+                        <p>Price for sale: {{ photo.get_price_for_sale }}</p>
+                    {% elif photo.price_per_night %}
+                        <p>Price per night: {{ photo.get_price_for_rent }}</p>
+                    {% elif photo.price %}
+                        <p>Price for sale: {{ photo.get_price_for_sale }}</p>
                         <p>{{ photo.apartment.get_full_area }} sq.m.</p>
                     {% endif %}
                 {% endif %}

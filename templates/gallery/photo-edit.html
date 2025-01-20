@@ -10,7 +10,11 @@
                 {% csrf_token %}
                 {{ form }}
                 <button class="button">Save</button>
+                <a href="{% url 'detail-photos' photo.pk %}">
+                    Cancel
+                </a>
             </form>
+            
         </div>
         {% elif form.price %}
             <h1>Edit Photo</h1>
@@ -19,7 +23,11 @@
                 {% csrf_token %}
                 {{ form }}
                 <button class="button">Save</button>
+                <a href="{% url 'detail-photos' photo.pk %}">
+                Cancel
+            </a>
             </form>
+            
         </div>
         {% else %}
             <h1>Edit Photo</h1>
@@ -28,7 +36,11 @@
                 {% csrf_token %}
                 {{ form }}
                 <button class="button">Save</button>
+                <a href="{% url 'detail-photos' photo.pk %}">
+                Cancel
+            </a>
             </form>
+            
         </div>
         {% endif %}
     </section>

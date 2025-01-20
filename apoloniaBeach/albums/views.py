@@ -137,11 +137,17 @@ class EditPhotoView(LoginRequiredMixin, UserIsApartmentOwnerMixin, UpdateView):
     def get_form_class(self):
         photo = self.get_object()
         if photo.apartment:
-            if photo.apartment.for_rental:
+            if photo.photo_type == 'Rental':
                 return EditRentalPhotoForm
-            elif photo.apartment.for_sale:
+            elif photo.photo_type == 'Sale':
                 return EditSalePhotoForm
         return EditCommonPhotoForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['photo'] = self.get_object()
+        context['pk'] = self.get_object().pk
+        return context
 
     def form_valid(self, form):
         return super().form_valid(form)
